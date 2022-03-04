@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block 'titulo' %}
+Listado de tareas
+{% endblock %}
+
+{% block 'contenido' %}
+<div>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>nombre</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for t in tareasPendientes %}
+                <tr>
+                    <td>{{t.nombre}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>nombre</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for tR in tareasRealizadas %}
+                <tr>
+                    <td>{{tR.nombre}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
