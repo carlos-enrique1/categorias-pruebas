@@ -5,15 +5,16 @@ Listado de tareas
 {% endblock %}
 
 {% block 'contenido' %}
-<div>
+<div id="contenedor">
     <div>
         <table>
             <thead>
                 <tr>
-                    <th>nombre</th>
+                    <th>Pendientes</th>
                 </tr>
             </thead>
             <tbody>
+                <!--Aqui se usa el nombre del return de pendientes en el views.py-->
                 {% for t in tareasPendientes %}
                 <tr>
                     <td>{{t.nombre}}</td>
@@ -26,10 +27,11 @@ Listado de tareas
         <table>
             <thead>
                 <tr>
-                    <th>nombre</th>
+                    <th>Realizadas</th>
                 </tr>
             </thead>
             <tbody>
+                <!--Aqui se usa el nombre del return de realizadas en el views.py-->
                 {% for tR in tareasRealizadas %}
                 <tr>
                     <td>{{tR.nombre}}</td>

@@ -1,0 +1,43 @@
+body {
+    font-size: 14pt;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.876);
+}
+
+table {
+    margin: 0 auto;
+    margin-top: 100pt;
+    background-color: rgba(253, 31, 31, 0.787);
+    border: 1px solid black;
+}
+
+th,
+td {
+    padding: 8pt;
+    background-color: rgba(0, 0, 0, 0.479);
+    color: rgba(255, 255, 255, 0.876);
+}
+
+h2 {
+    text-align: center;
+    color: rgba(241, 241, 241, 0.904);
+}
+
+div {
+    width: 50%;
+    margin-top:50pt;
+    background-color: rgba(0, 0, 0, 0.77);
+    max-width: 600pt;
+    border: 2pt solid rgba(130, 41, 233, 0.808);
+}
+p{
+    margin-left: 20pt;
+}
+.contenedor{
+    margin: 0 auto;
+    width: 90%;
+}
