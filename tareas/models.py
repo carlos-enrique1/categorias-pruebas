@@ -17,7 +17,7 @@ class Tarea (models.Model):
     Aqui creamos los campos de la Base de Datos
     '''
     nombre=models.CharField(max_length=150,blank=False)
-    categoria=models.ForeignKey(Categoria,on_delete=models.RESTRICT)
+    categoria=models.ForeignKey(Categoria,on_delete=models.RESTRICT, blank=False)
     estado=models.BooleanField(blank=False)
     
     def __str__(self) -> str:
