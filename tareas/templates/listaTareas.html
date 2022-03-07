@@ -5,16 +5,15 @@ Listado de tareas
 {% endblock %}
 
 {% block 'contenido' %}
-<select name="categorias">
-    {% for c in categorias %}
-    <option value="{{c.id}}"><a href="{% url 'listaTareasC' c.id %}">Categoria {{c.nombre}}</a></option>
-    {% endfor %}
-</select>
-
-{% for c in categorias %}
-<a href="{% url 'listaTareasC' c.id %}">Categoria {{c.nombre}}</a>
-<br>
-{% endfor %}
+<h1>{{categoriaActiva.nombre}}</h1>
+<div id="seleccionarCategorias">
+    <select name="categorias" id ="categ">
+        {% for c in categorias %}
+        <option value="{% url 'listaTareasC' c.id %}">{{c.nombre}}</option>
+        {% endfor %}
+    </select>
+    <button onclick="categoriaSeleccionada()">Seleccionar</button>
+</div>
 
 <div id="contenedor">
     <div class="inferior">
@@ -52,4 +51,9 @@ Listado de tareas
         </table>
     </div>
 </div>
+<script>
+    function categoriaSeleccionada(){
+        window.location.href=document.getElementById("categ").value;
+    }
+</script>
 {% endblock %}
