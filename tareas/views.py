@@ -19,9 +19,14 @@ def listaTareas(request):
             pendientes.append(item)
         else:
             realizadas.append(item)
-    return render(request,'listaTareas.html',{'tareasPendientes':pendientes,'tareasRealizadas':realizadas,'categorias':Categoria.objects.all()})
+    categoria=Categoria.objects.get(nombre="Todas")
+    return render(request,'listaTareas.html',{'tareasPendientes':pendientes,'tareasRealizadas':realizadas,'categorias':Categoria.objects.all(),'categoriaActiva':categoria})
 
 def listaTareasC(request,id):
+    '''
+    Cada vez que se llama a una categoria concreta se llama a esta funcion que seleciona
+    todas las tareas pendientes y realizadas y las envia al html
+    '''
     pendientes=[]
     realizadas=[]
     for item in Tarea.objects.filter(categoria_id=id).all():

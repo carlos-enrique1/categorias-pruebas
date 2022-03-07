@@ -5,18 +5,46 @@ Listado de tareas
 {% endblock %}
 
 {% block 'contenido' %}
-<h1>{{categoriaActiva.nombre}}</h1>
-<div id="seleccionarCategorias">
-    <select name="categorias" id ="categ">
-        {% for c in categorias %}
-        <option value="{% url 'listaTareasC' c.id %}">{{c.nombre}}</option>
-        {% endfor %}
-    </select>
-    <button onclick="categoriaSeleccionada()">Seleccionar</button>
+<div id="parteSuperior">
+    <div id="creacionTareas">
+        <label>Nueva Tarea</label> 
+        <br>
+        <textArea cols="60" rows="6"></textArea>
+        <br>
+        <button onclick="categoriaSeleccionada()">Crear Tarea</button>
+    </div>
+    <!--Selector de las categorias, se le da un valor a cada elemento y se llama al valor desde el boton-->
+    <div id="gestionCategorias">
+        <label>Nueva Categoria</label> 
+        <br>
+        <input type="text">
+        <button>Crear Categoria</button>
+        <br>
+        <br>
+        <label>Borrar Categoria</label><br>
+        <select name="categorias" id ="categB">
+            {% for c in categorias %}
+            <option value="{% url 'listaTareasC' c.id %}">{{c.nombre}}</option>
+            {% endfor %}
+        </select>
+        <button onclick="">Borrar Categoria</button>
+    </div>
+    <div id="seleccionarCategorias">
+        <h1>{{categoriaActiva.nombre}}</h1>
+        <select name="categorias" id ="categ">
+            {% for c in categorias %}
+            <option value="{% url 'listaTareasC' c.id %}">{{c.nombre}}</option>
+            {% endfor %}
+        </select>
+        <button onclick="categoriaSeleccionada()">Seleccionar</button>
+    </div>
 </div>
-
 <div id="contenedor">
     <div class="inferior">
+        <div class="botones">
+            <button>Completar Tareas Seleccionadas</button>
+            <button>Eliminar Tareas Seleccionadas</button>
+        </div>  
         <table>
             <thead>
                 <tr>
@@ -33,6 +61,10 @@ Listado de tareas
                 {% endfor %}
             </tbody>
         </table>
+    </div>
+    <div class="botones">
+        <button>Devolver Realizadas a Pendientes</button>
+        <button>Eliminar Tareas Seleccionadas</button>
     </div>
     <div class="inferior">
         <table>
@@ -52,9 +84,4 @@ Listado de tareas
         </table>
     </div>
 </div>
-<script>
-    function categoriaSeleccionada(){
-        window.location.href=document.getElementById("categ").value;
-    }
-</script>
 {% endblock %}
