@@ -5,6 +5,17 @@ Listado de tareas
 {% endblock %}
 
 {% block 'contenido' %}
+<select name="categorias">
+    {% for c in categorias %}
+    <option value="{{c.id}}"><a href="{% url 'listaTareasC' c.id %}">Categoria {{c.nombre}}</a></option>
+    {% endfor %}
+</select>
+
+{% for c in categorias %}
+<a href="{% url 'listaTareasC' c.id %}">Categoria {{c.nombre}}</a>
+<br>
+{% endfor %}
+
 <div id="contenedor">
     <div class="inferior">
         <table>

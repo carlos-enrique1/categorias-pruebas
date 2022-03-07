@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Tarea
+from .models import Categoria, Tarea
 
 # Create your views here.
 
@@ -19,4 +19,14 @@ def listaTareas(request):
             pendientes.append(item)
         else:
             realizadas.append(item)
-    return render(request,'listaTareas.html',{'tareasPendientes':pendientes,'tareasRealizadas':realizadas})
+    return render(request,'listaTareas.html',{'tareasPendientes':pendientes,'tareasRealizadas':realizadas,'categorias':Categoria.objects.all()})
+
+def listaTareasC(request,id):
+    pendientes=[]
+    realizadas=[]
+    for item in Tarea.objects.filter(categoria_id=id).all():
+        if item.estado==0:
+            pendientes.append(item)
+        else:
+            realizadas.append(item)
+    return render(request,'listaTareas.html',{'tareasPendientes':pendientes,'tareasRealizadas':realizadas,'categorias':Categoria.objects.all()})
