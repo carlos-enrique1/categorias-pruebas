@@ -27,7 +27,8 @@ Listado de tareas
                 <!--Aqui se usa el nombre del return de pendientes en el views.py-->
                 {% for t in tareasPendientes %}
                 <tr>
-                    <td>{{t.nombre}}</td>
+                <!--Cada elemnento lleva su checkbox-->    
+                    <td>{{t.nombre}}<input type="checkbox"></td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -44,7 +45,7 @@ Listado de tareas
                 <!--Aqui se usa el nombre del return de realizadas en el views.py-->
                 {% for tR in tareasRealizadas %}
                 <tr>
-                    <td>{{tR.nombre}}</td>
+                    <td>{{tR.nombre}}<input type="checkbox"></td>
                 </tr>
                 {% endfor %}
             </tbody>
