@@ -41,3 +41,7 @@ input[type="checkbox"] {
     width:15pt;
     height:15pt;
 }
+button{
+    background-color:blue;
+    color:white;
+}
