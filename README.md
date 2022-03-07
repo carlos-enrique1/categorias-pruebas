@@ -37,7 +37,7 @@ Añadir en **settings.py** Installed_Apps la carpeta, en este caso **tareas**
 
 Ejecutar el siguiente comando:
 ``` 
-
+python manage.py makemigrations
 ```
 Ejecutar el siguiente comando para instalar 
 el Mysql
