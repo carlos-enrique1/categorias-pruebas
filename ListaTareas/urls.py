@@ -7,7 +7,12 @@ urlpatterns = [
     path('',views.listaTareas,name='listaTareas'),
     path('<int:id>',views.listaTareasC,name='listaTareasC'),
     path('crearTarea',views.crearTarea,name='crearTarea'),
-    path('crearCategoria',views.crearCategoria,name='crearCategoria')
+    path('crearCategoria',views.crearCategoria,name='crearCategoria'),
+    path('borrarCategoria',views.borrarCategoria,name='borrarCategoria'),
+    path('cambiarEstados',views.cambiarEstados,name='cambiarEstados'),
+    path('borrarTareas',views.borrarTareas,name='borrarTareas'),
+    path('seleccionarCategoria',views.seleccionarCategoria,name='seleccionarCategoria')
+    
     
     #path('admin/', admin.site.urls),
 ]
