@@ -6,6 +6,9 @@ from .models import Categoria, Tarea
 # Create your views here.
 
 def tareasPendientes():
+    '''
+    Esta funcion devuelve una lista con las tareas pendientes
+    '''
     pendientes=[]
     for item in Tarea.objects.all():
         if item.estado==0:
@@ -13,6 +16,9 @@ def tareasPendientes():
     return pendientes
 
 def tareasRealizadas():
+    '''
+    Esta funcion devuelve una lista con las tareas realizadas
+    ''' 
     realizadas=[]
     for item in Tarea.objects.all():
         if item.estado==1:
@@ -49,6 +55,9 @@ def listaTareasC(request,id):
     return render(request,'listaTareas.html',{'tareasPendientes':pendientes,'tareasRealizadas':realizadas,'categorias':Categoria.objects.all(),'categoriaActiva':Categoria.objects.get(pk=id)})
 
 def crearTarea(request):
+    '''
+    Esta funcion lo que hace es crear las tareas
+    '''
     nombreDeLaTarea=request.POST['nombreTarea']
     categoriaDeLaTarea=request.POST['categoriasCrearTarea']
     if nombreDeLaTarea != None and nombreDeLaTarea != "":
@@ -64,6 +73,10 @@ def crearTarea(request):
     return render(request,'listaTareas.html',{'tareasPendientes':pendientes,'tareasRealizadas':realizadas,'categorias':Categoria.objects.all(),'categoriaActiva':Categoria.objects.get(pk=categoriaDeLaTarea)})
 
 def crearCategoria(request):
+    '''
+    Esta funcion lo que hace es crear las categorias
+    '''
+    
     nombreDeLaCategoria=request.POST['nombreCategoriaNueva']
     if nombreDeLaCategoria != None and nombreDeLaCategoria != "":
         Categoria(nombre=nombreDeLaCategoria).save()
