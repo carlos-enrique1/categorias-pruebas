@@ -6,7 +6,8 @@ Se hace un import a las vistas y se pone como vista principal la lista
 urlpatterns = [
     path('',views.listaTareas,name='listaTareas'),
     path('<int:id>',views.listaTareasC,name='listaTareasC'),
-    path('',views.crearTarea,name='crearTarea')
+    path('crearTarea',views.crearTarea,name='crearTarea'),
+    path('crearCategoria',views.crearCategoria,name='crearCategoria')
     
     #path('admin/', admin.site.urls),
 ]
