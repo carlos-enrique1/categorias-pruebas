@@ -7,7 +7,7 @@ h1{
 }
 table {
     margin: 0 auto;
-    margin-top: 10pt;
+    margin-top: 40pt;
 }
 
 th,
@@ -38,6 +38,14 @@ label{
     width: 49%;
     float: left;
     min-height: 400px;
+}
+.der{
+    float:right;
+    margin-right: 20pt;
+}
+.izq{
+    float:left;
+    margin-left: 20pt;
 }
 #contenedor{
     margin:0 auto;

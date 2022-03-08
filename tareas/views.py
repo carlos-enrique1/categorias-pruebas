@@ -35,3 +35,14 @@ def listaTareasC(request,id):
         else:
             realizadas.append(item)
     return render(request,'listaTareas.html',{'tareasPendientes':pendientes,'tareasRealizadas':realizadas,'categorias':Categoria.objects.all(),'categoriaActiva':Categoria.objects.get(pk=id)})
+
+def crearTarea(request):
+    nombreDeLaTarea=request.POST['nombreTarea']
+    categoriaDeLaTarea=request.POST['catego']
+    if nombreDeLaTarea == "":
+        return
+    Tarea(nombre=nombreDeLaTarea,categoria=categoriaDeLaTarea,estado=0).save()
+    listaTareas(request)
+
+def modificarTarea(request):
+    return

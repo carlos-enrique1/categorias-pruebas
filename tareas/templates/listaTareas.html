@@ -7,24 +7,34 @@ Listado de tareas
 {% block 'contenido' %}
 <div id="parteSuperior">
     <div id="creacionTareas">
-        <label>Nueva Tarea</label> 
-        <br>
-        <textArea cols="60" rows="6"></textArea>
-        <br>
-        <button onclick="categoriaSeleccionada()">Crear Tarea</button>
+        <form action="{% url 'crearTarea' %}" method="post">
+            {% csrf_token %}
+            <label>Nueva Tarea</label> 
+            <br>
+            <textArea cols="60" rows="6" id="nombreTarea"></textArea>
+            <br>
+            <button type="submit" value="submit">Crear Tarea</button>
+            <select name="categorias" id ="catego">
+                {% for c in categorias %}
+                <option value="{{c.id}}">{{c.nombre}}</option>
+                {% endfor %}
+            </select>
+        </form>
     </div>
     <!--Selector de las categorias, se le da un valor a cada elemento y se llama al valor desde el boton-->
     <div id="gestionCategorias">
         <label>Nueva Categoria</label> 
         <br>
-        <input type="text">
+        <input type="text" id="campoCrearTarea">
         <button>Crear Categoria</button>
         <br>
         <br>
         <label>Borrar Categoria</label><br>
         <select name="categorias" id ="categB">
             {% for c in categorias %}
-            <option value="{% url 'listaTareasC' c.id %}">{{c.nombre}}</option>
+            {% if not c.nombre in "Todas" %}
+            <option value="{{c.id}}">{{c.nombre}}</option>
+            {% endif %}
             {% endfor %}
         </select>
         <button onclick="">Borrar Categoria</button>
@@ -42,8 +52,8 @@ Listado de tareas
 <div id="contenedor">
     <div class="inferior">
         <div class="botones">
-            <button>Completar Tareas Seleccionadas</button>
-            <button>Eliminar Tareas Seleccionadas</button>
+            <button class="der" onclick="completarTareas()">Completar Tareas Seleccionadas</button>
+            <button class="izq">Eliminar Tareas Seleccionadas</button>
         </div>  
         <table>
             <thead>
@@ -56,17 +66,17 @@ Listado de tareas
                 {% for t in tareasPendientes %}
                 <tr>
                 <!--Cada elemnento lleva su checkbox-->    
-                    <td>{{t.nombre}}<input type="checkbox"></td>
+                    <td>{{t.nombre}}<input value={{t.id}} type="checkbox"></td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
-    <div class="botones">
-        <button>Devolver Realizadas a Pendientes</button>
-        <button>Eliminar Tareas Seleccionadas</button>
-    </div>
     <div class="inferior">
+        <div class="botones">
+            <button class="izq">Devolver Realizadas a Pendientes</button>
+            <button class="der">Eliminar Tareas Seleccionadas</button>
+        </div>
         <table>
             <thead>
                 <tr>
@@ -77,11 +87,31 @@ Listado de tareas
                 <!--Aqui se usa el nombre del return de realizadas en el views.py-->
                 {% for tR in tareasRealizadas %}
                 <tr>
-                    <td>{{tR.nombre}}<input type="checkbox"></td>
+                    <td>{{tR.nombre}}<input value={{tR.id}} type="checkbox"></td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
 </div>
+<script>
+    function categoriaSeleccionada() {
+        var selecion = document.getElementById("categ");
+        if (selecion.options[selecion.selectedIndex].text == "Todas") {
+            window.location.href = "{% url 'listaTareas' %}"
+        } else {
+            window.location.href = selecion.value;
+        }
+    }
+    function completarTareas(){
+        var seleccionados=[];
+        var checkboxes=document.getElementsByTagName("checkbox")
+        checkboxes.array.forEach(element => {
+            if(element.checked){
+                seleccionados.push(element.value);
+            }
+        });
+        
+    }
+</script>
 {% endblock %}
