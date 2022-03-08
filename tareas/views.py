@@ -51,6 +51,8 @@ def listaTareasC(request,id):
 def crearTarea(request):
     nombreDeLaTarea=request.POST['nombreTarea']
     categoriaDeLaTarea=request.POST['categoriasCrearTarea']
+    if nombreDeLaTarea != None and nombreDeLaTarea != "":
+        Tarea(nombre=nombreDeLaTarea,categoria_id=categoriaDeLaTarea,estado=0).save()
     pendientes=[]
     realizadas=[]
     for item in tareasPendientes():
@@ -59,8 +61,6 @@ def crearTarea(request):
     for item in tareasRealizadas():
         if item.categoria_id==int(categoriaDeLaTarea):
             realizadas.append(item)
-    if nombreDeLaTarea != None and nombreDeLaTarea != "":
-        Tarea(nombre=nombreDeLaTarea,categoria_id=categoriaDeLaTarea,estado=0).save()
     return render(request,'listaTareas.html',{'tareasPendientes':pendientes,'tareasRealizadas':realizadas,'categorias':Categoria.objects.all(),'categoriaActiva':Categoria.objects.get(pk=categoriaDeLaTarea)})
 
 def crearCategoria(request):
