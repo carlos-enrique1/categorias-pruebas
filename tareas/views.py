@@ -1,4 +1,6 @@
+from genericpath import exists
 from http.client import HTTPResponse
+from msilib.schema import Error
 from unicodedata import category
 from django.shortcuts import render
 from .models import Categoria, Tarea
@@ -30,6 +32,10 @@ def listaTareas(request):
     '''
     pendientes=tareasPendientes()
     realizadas=tareasRealizadas()
+    try:
+        Categoria.objects.get(nombre="Todas")
+    except BaseException:
+        Categoria(nombre="Todas").save()
     categoria=Categoria.objects.get(nombre="Todas")
     return render(request,'listaTareas.html',{'tareasPendientes':pendientes,'tareasRealizadas':realizadas,'categorias':Categoria.objects.all(),'categoriaActiva':categoria})
 
@@ -66,15 +72,45 @@ def crearTarea(request):
 def crearCategoria(request):
     nombreDeLaCategoria=request.POST['nombreCategoriaNueva']
     if nombreDeLaCategoria != None and nombreDeLaCategoria != "":
-        Categoria(nombre=nombreDeLaCategoria).save()
+        try:
+            Categoria(nombre=nombreDeLaCategoria).save()
+        except:
+            pass
     pendientes=tareasPendientes()
     realizadas=tareasRealizadas()
     categoria=Categoria.objects.get(nombre="Todas")
     return render(request,'listaTareas.html',{'tareasPendientes':pendientes,'tareasRealizadas':realizadas,'categorias':Categoria.objects.all(),'categoriaActiva':categoria})
 
 def borrarCategoria(request):
+    idDeLaCategoria=request.POST['categoriaABorrar']
+    borrado=Categoria.objects.get(pk=idDeLaCategoria)
+    try:
+        borrado.delete()
+    except:
+        pass
+    pendientes=tareasPendientes()
+    realizadas=tareasRealizadas()
+    categoria=Categoria.objects.get(nombre="Todas")
+    return render(request,'listaTareas.html',{'tareasPendientes':pendientes,'tareasRealizadas':realizadas,'categorias':Categoria.objects.all(),'categoriaActiva':categoria})
+
+def seleccionarCategoria(request):
+    idDeLaCategoria=request.POST['seleccionCategorias']
+    pendientes=[]
+    realizadas=[]
+    if Categoria.objects.get(pk=idDeLaCategoria).nombre=="Todas":
+        pendientes=tareasPendientes()
+        realizadas=tareasRealizadas()
+    else:
+        for item in tareasPendientes():
+            if item.categoria_id==int(idDeLaCategoria):
+                pendientes.append(item)
+        for item in tareasRealizadas():
+            if item.categoria_id==int(idDeLaCategoria):
+                realizadas.append(item)
+    return render(request,'listaTareas.html',{'tareasPendientes':pendientes,'tareasRealizadas':realizadas,'categorias':Categoria.objects.all(),'categoriaActiva':Categoria.objects.get(pk=idDeLaCategoria)})
+
+def cambiarEstados(request):
     return
 
-
-def modificarTarea(request):
+def borrarTareas(request):
     return

@@ -14,6 +14,7 @@ Listado de tareas
             <textArea cols="60" rows="6" id="nombreTarea" name="nombreTarea"></textArea>
             <br>
             <button type="submit" value="submit">Crear Tarea</button>
+            <label>Escoge categoria</label>
             <select name="categoriasCrearTarea" id ="catego">
                 {% for c in categorias %}
                 <option value="{{c.id}}">{{c.nombre}}</option>
@@ -30,28 +31,33 @@ Listado de tareas
             <input type="text" id="campoCrearTarea" name="nombreCategoriaNueva">
             <button type="submit" value="submit">Crear Categoria</button>
         </form>
-        <br>
-        <label>Borrar Categoria</label><br>
-        <select name="categorias" id ="categB">
-            {% for c in categorias %}
-            {% if not c.nombre in "Todas" %}
-            <option value="{{c.id}}">{{c.nombre}}</option>
-            {% endif %}
-            {% endfor %}
-        </select>
-        <button onclick="">Borrar Categoria</button>
+        <form action="{% url 'borrarCategoria' %}" method="post">
+            {% csrf_token %}
+            <label>Borrar Categoria</label><br>
+            <select name="categoriaABorrar" id ="categB">
+                {% for c in categorias %}
+                {% if not c.nombre == "Todas" %}
+                <option value="{{c.id}}">{{c.nombre}}</option>
+                {% endif %}
+                {% endfor %}
+            </select>
+            <button  type="submit" value="submit">Borrar Categoria</button>
+        </form>
     </div>
     <div id="seleccionarCategorias">
         <h2>{{categoriaActiva.nombre}}</h2>
-        <select name="categorias" id ="categ">
-            {% for c in categorias %}
-            <option value="{% url 'listaTareasC' c.id %}">{{c.nombre}}</option>
-            {% endfor %}
-        </select>
-        <button onclick="categoriaSeleccionada()">Seleccionar</button>
+        <form action="{% url 'seleccionarCategoria' %}" method="post">
+            {% csrf_token %}
+            <select name="seleccionCategorias" id ="categ">
+                {% for c in categorias %}
+                <option value="{{c.id}}">{{c.nombre}}</option>
+                {% endfor %}
+            </select>
+            <button onclick="categoriaSeleccionada()">Seleccionar</button>
+        </form>
         <div class="botones">
-            <button class="botonesCentrales">Cambiar estado tareas</button>
-            <button class="botonesCentrales">Eliminar Tareas Seleccionadas</button>
+            <button class="botonesCentrales" onclick="cambiarEstadosTareas()">Cambiar estado tareas</button>
+            <button class="botonesCentrales" onclick="borrarTareasSeleccionadas()">Eliminar Tareas Seleccionadas</button>
         </div>
     </div>
 </div>
@@ -93,23 +99,12 @@ Listado de tareas
     </div>
 </div>
 <script>
-    function categoriaSeleccionada() {
-        var selecion = document.getElementById("categ");
-        if (selecion.options[selecion.selectedIndex].text == "Todas") {
-            window.location.href = "{% url 'listaTareas' %}"
-        } else {
-            window.location.href = selecion.value;
-        }
-    }
-    function completarTareas(){
-        var seleccionados=[];
-        var checkboxes=document.getElementsByTagName("checkbox")
-        checkboxes.array.forEach(element => {
-            if(element.checked){
-                seleccionados.push(element.value);
-            }
-        });
+function cambiarEstadosTareas(){
+    //window.location.href="{% url 'cambiarEstados' %}";
+}
 
-    }
+function borrarTareasSeleccionadas(){
+    //window.location.href="{% url 'borrarTareas' %}";
+}
 </script>
 {% endblock %}

@@ -22,8 +22,6 @@ button{
 }
 textarea{
     margin:5pt;
-    min-width: 300pt;
-    min-height: 70pt;
     max-width: 300pt;
     max-height: 70pt;
 }
