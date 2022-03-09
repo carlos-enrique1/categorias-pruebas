@@ -9,15 +9,15 @@ Listado de tareas
     <div id="creacionTareas">
         <form action="{% url 'crearTarea' %}" method="post">
             {% csrf_token %}
-            <label>Nueva Tarea</label> 
+            <label>Categoria</label>
             <br>
             <select name="categoriasCrearTarea" id ="catego">
                 {% for c in categorias %}
                 <option value="{{c.id}}">{{c.nombre}}</option>
                 {% endfor %}
             </select>
-            <button type="submit" value="submit">Crear Tarea</button>
             <textArea id="nombreTarea" name="nombreTarea"></textArea>
+            <button type="submit" value="submit" id="botonCrearTarea">Crear Tarea</button>
             <br>
         </form>
     </div>
