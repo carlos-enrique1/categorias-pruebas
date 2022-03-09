@@ -1,8 +1,3 @@
-from genericpath import exists
-from http.client import HTTPResponse
-from msilib.schema import Error
-import re
-from unicodedata import category
 from django.shortcuts import render
 from .models import Categoria, Tarea
 

@@ -11,15 +11,14 @@ Listado de tareas
             {% csrf_token %}
             <label>Nueva Tarea</label> 
             <br>
-            <textArea id="nombreTarea" name="nombreTarea"></textArea>
-            <br>
-            <button type="submit" value="submit">Crear Tarea</button>
-            <label>Escoge categoria</label>
             <select name="categoriasCrearTarea" id ="catego">
                 {% for c in categorias %}
                 <option value="{{c.id}}">{{c.nombre}}</option>
                 {% endfor %}
             </select>
+            <button type="submit" value="submit">Crear Tarea</button>
+            <textArea id="nombreTarea" name="nombreTarea"></textArea>
+            <br>
         </form>
     </div>
     <!--Selector de las categorias, se le da un valor a cada elemento y se llama al valor desde el boton-->
@@ -62,8 +61,8 @@ Listado de tareas
         {% csrf_token %}
         <input type="hidden" name="nombreCategoria" value="{{categoriaActiva.id}}" id="oculto">
         <div class="pie">
-            <input type="submit" class="botonesCentrales" value="Cambiar estado tareas" name="cambiar">
-            <input type="submit" class="botonesCentrales" value="Eliminar Tareas Seleccionadas" name="eliminar">
+            <input type="submit" class="botonesCentrales" value="Cambiar estado tareas" name="cambiar" id="cambiarEstado">
+            <input type="submit" class="botonesCentrales" value="Eliminar Tareas Seleccionadas" name="eliminar" id="eliminarTareas">
         </div>
         <div class="inferior">
             <table>
