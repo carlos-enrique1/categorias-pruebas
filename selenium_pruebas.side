@@ -1,0 +1,193 @@
+{
+  "id": "775e86dc-c6a8-420d-9509-c2d2d6690d01",
+  "version": "2.0",
+  "name": "selenium_pruebas",
+  "url": "http:127.0.0.1:8000",
+  "tests": [{
+    "id": "72c6d9f5-5847-4cac-a312-e94db9b5a57f",
+    "name": "Untitled",
+    "commands": []
+  }, {
+    "id": "2552d27f-afd8-4b38-a0b5-13fe5cde32d2",
+    "name": "crear categoria",
+    "commands": [{
+      "id": "392517ab-c13d-472d-b421-e604073f7620",
+      "comment": "",
+      "command": "open",
+      "target": "http://127.0.0.1:8000/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "135e8232-7a11-48f2-9bb3-c0151df4d029",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1376x744",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b5565d42-dc1f-4dec-b5ca-cf5f62914407",
+      "comment": "",
+      "command": "click",
+      "target": "id=nombreTarea",
+      "targets": [
+        ["id=nombreTarea", "id"],
+        ["name=nombreTarea", "name"],
+        ["css=#nombreTarea", "css:finder"],
+        ["xpath=//textarea[@id='nombreTarea']", "xpath:attributes"],
+        ["xpath=//div[@id='creacionTareas']/form/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "373609db-5d79-4f1a-a11d-8b2c2f43e9dd",
+      "comment": "",
+      "command": "type",
+      "target": "id=nombreTarea",
+      "targets": [
+        ["id=nombreTarea", "id"],
+        ["name=nombreTarea", "name"],
+        ["css=#nombreTarea", "css:finder"],
+        ["xpath=//textarea[@id='nombreTarea']", "xpath:attributes"],
+        ["xpath=//div[@id='creacionTareas']/form/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "ordenar el salon"
+    }, {
+      "id": "4930ff5a-b83a-441a-a49c-9ecdfc8a4bbe",
+      "comment": "",
+      "command": "click",
+      "target": "id=catego",
+      "targets": [
+        ["id=catego", "id"],
+        ["name=categoriasCrearTarea", "name"],
+        ["css=#catego", "css:finder"],
+        ["xpath=//select[@id='catego']", "xpath:attributes"],
+        ["xpath=//div[@id='creacionTareas']/form/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "59a9cc0a-6cea-446e-a1c0-0c0a4c6e0565",
+      "comment": "",
+      "command": "select",
+      "target": "id=catego",
+      "targets": [],
+      "value": "label=mantenimiento y limpieza"
+    }, {
+      "id": "3dbcfa51-0313-4156-ae48-1b910fdcd1c7",
+      "comment": "",
+      "command": "click",
+      "target": "css=#catego > option:nth-child(4)",
+      "targets": [
+        ["css=#catego > option:nth-child(4)", "css:finder"],
+        ["xpath=//option[@value='15']", "xpath:attributes"],
+        ["xpath=//select[@id='catego']/option[4]", "xpath:idRelative"],
+        ["xpath=//option[4]", "xpath:position"],
+        ["xpath=//option[contains(.,'mantenimiento y limpieza')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "565f53dc-7832-46fb-bce1-327ea7adc30c",
+      "comment": "",
+      "command": "click",
+      "target": "css=form > button:nth-child(6)",
+      "targets": [
+        ["css=form > button:nth-child(6)", "css:finder"],
+        ["xpath=//button[@value='submit']", "xpath:attributes"],
+        ["xpath=//div[@id='creacionTareas']/form/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Crear Tarea')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "a218d3aa-ca54-4085-a4ef-706d954ff45d",
+      "comment": "",
+      "command": "click",
+      "target": "id=nombreTarea",
+      "targets": [
+        ["id=nombreTarea", "id"],
+        ["name=nombreTarea", "name"],
+        ["css=#nombreTarea", "css:finder"],
+        ["xpath=//textarea[@id='nombreTarea']", "xpath:attributes"],
+        ["xpath=//div[@id='creacionTareas']/form/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e6972701-c51d-49ac-b9b6-b02927a21fb3",
+      "comment": "",
+      "command": "type",
+      "target": "id=nombreTarea",
+      "targets": [
+        ["id=nombreTarea", "id"],
+        ["name=nombreTarea", "name"],
+        ["css=#nombreTarea", "css:finder"],
+        ["xpath=//textarea[@id='nombreTarea']", "xpath:attributes"],
+        ["xpath=//div[@id='creacionTareas']/form/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "pasar la fregona"
+    }, {
+      "id": "4666ec1b-706e-4e5a-9b4a-32a4bea014d1",
+      "comment": "",
+      "command": "click",
+      "target": "id=catego",
+      "targets": [
+        ["id=catego", "id"],
+        ["name=categoriasCrearTarea", "name"],
+        ["css=#catego", "css:finder"],
+        ["xpath=//select[@id='catego']", "xpath:attributes"],
+        ["xpath=//div[@id='creacionTareas']/form/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "46ca564c-c4ad-4af1-9453-9f856f8f13da",
+      "comment": "",
+      "command": "select",
+      "target": "id=catego",
+      "targets": [],
+      "value": "label=mantenimiento y limpieza"
+    }, {
+      "id": "d651761b-22a8-48c0-8e4f-db7542f6624d",
+      "comment": "",
+      "command": "click",
+      "target": "css=#catego > option:nth-child(4)",
+      "targets": [
+        ["css=#catego > option:nth-child(4)", "css:finder"],
+        ["xpath=//option[@value='15']", "xpath:attributes"],
+        ["xpath=//select[@id='catego']/option[4]", "xpath:idRelative"],
+        ["xpath=//option[4]", "xpath:position"],
+        ["xpath=//option[contains(.,'mantenimiento y limpieza')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c6ef3c28-b94c-4788-a6e2-d9cf69b16bb0",
+      "comment": "",
+      "command": "click",
+      "target": "css=form > button:nth-child(6)",
+      "targets": [
+        ["css=form > button:nth-child(6)", "css:finder"],
+        ["xpath=//button[@value='submit']", "xpath:attributes"],
+        ["xpath=//div[@id='creacionTareas']/form/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Crear Tarea')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "d629b61c-ad91-4e16-b16a-7b76c6bea907",
+    "name": "crear tarea",
+    "commands": []
+  }],
+  "suites": [{
+    "id": "6c4c796c-c5d7-4036-aad1-e46c3e63221c",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["72c6d9f5-5847-4cac-a312-e94db9b5a57f"]
+  }],
+  "urls": ["http://127.0.0.1:8000/"],
+  "plugins": []
+}
