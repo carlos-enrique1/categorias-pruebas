@@ -21,15 +21,26 @@ button{
     margin: 5pt;
 }
 textarea{
-    margin:5pt;
-    max-width: 300pt;
-    max-height: 70pt;
+    margin: 5pt;
+    width: 90%;
+    height: 50pt;
+    max-width: 90%;
+    max-height: 50pt;
 }
 input[type="text"]{
     margin:5pt;
 }
+input[type="submit"]{
+    display:block;
+    margin:0 auto;
+    margin-top:5pt;
+    margin-bottom:5pt;
+}
 label{
     margin:5pt;
+}
+.pie{
+    width: 100%;
 }
 .inferior{
     width: 49%;
@@ -44,6 +55,9 @@ label{
     margin-right:15pt;
     margin-bottom: 5pt;
     width: 90%;
+}
+#oculto{
+    display: none;
 }
 #contenedor{
     margin:0 auto;

@@ -11,7 +11,7 @@ Listado de tareas
             {% csrf_token %}
             <label>Nueva Tarea</label> 
             <br>
-            <textArea cols="60" rows="6" id="nombreTarea" name="nombreTarea"></textArea>
+            <textArea id="nombreTarea" name="nombreTarea"></textArea>
             <br>
             <button type="submit" value="submit">Crear Tarea</button>
             <label>Escoge categoria</label>
@@ -55,56 +55,51 @@ Listado de tareas
             </select>
             <button onclick="categoriaSeleccionada()">Seleccionar</button>
         </form>
-        <div class="botones">
-            <button class="botonesCentrales" onclick="cambiarEstadosTareas()">Cambiar estado tareas</button>
-            <button class="botonesCentrales" onclick="borrarTareasSeleccionadas()">Eliminar Tareas Seleccionadas</button>
-        </div>
     </div>
 </div>
 <div id="contenedor">
-    <div class="inferior">
-        <table>
-            <thead>
-                <tr>
-                    <th><h3>Pendientes</h3></th>
-                </tr>
-            </thead>
-            <tbody>
-                <!--Aqui se usa el nombre del return de pendientes en el views.py-->
-                {% for t in tareasPendientes %}
-                <tr>
-                <!--Cada elemnento lleva su checkbox-->    
-                    <td>{{t.nombre}}<input value={{t.id}} type="checkbox"></td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-    <div class="inferior">
-        <table>
-            <thead>
-                <tr>
-                    <th><h3>Realizadas</h3></th>
-                </tr>
-            </thead>
-            <tbody>
-                <!--Aqui se usa el nombre del return de realizadas en el views.py-->
-                {% for tR in tareasRealizadas %}
-                <tr>
-                    <td>{{tR.nombre}}<input value={{tR.id}} type="checkbox"></td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+    <form action="{% url 'seleccionarModo' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="nombreCategoria" value="{{categoriaActiva.id}}" id="oculto">
+        <div class="pie">
+            <input type="submit" class="botonesCentrales" value="Cambiar estado tareas" name="cambiar">
+            <input type="submit" class="botonesCentrales" value="Eliminar Tareas Seleccionadas" name="eliminar">
+        </div>
+        <div class="inferior">
+            <table>
+                <thead>
+                    <tr>
+                        <th><h3>Pendientes</h3></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!--Aqui se usa el nombre del return de pendientes en el views.py-->
+                    {% for t in tareasPendientes %}
+                    <tr>
+                    <!--Cada elemnento lleva su checkbox-->    
+                        <td>{{t.nombre}}<input value={{t.id}} type="checkbox" name="tarea"></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="inferior">
+            <table>
+                <thead>
+                    <tr>
+                        <th><h3>Realizadas</h3></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!--Aqui se usa el nombre del return de realizadas en el views.py-->
+                    {% for tR in tareasRealizadas %}
+                    <tr>
+                        <td>{{tR.nombre}}<input value={{tR.id}} type="checkbox" name="tarea"></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </form>
 </div>
-<script>
-function cambiarEstadosTareas(){
-    //window.location.href="{% url 'cambiarEstados' %}";
-}
-
-function borrarTareasSeleccionadas(){
-    //window.location.href="{% url 'borrarTareas' %}";
-}
-</script>
 {% endblock %}
