@@ -1,3 +1,4 @@
+from distutils.log import error
 from django.shortcuts import render
 from .models import Categoria, Tarea
 
@@ -60,40 +61,47 @@ def crearTarea(request):
     '''
     Esta funcion lo que hace es crear las tareas
     '''
-    nombreDeLaTarea=request.POST['nombreTarea']
-    categoriaDeLaTarea=request.POST['categoriasCrearTarea']
-    if nombreDeLaTarea != None and nombreDeLaTarea != "":
-        Tarea(nombre=nombreDeLaTarea,categoria_id=categoriaDeLaTarea,estado=0).save()
+    try:
+        nombreDeLaTarea=request.POST['nombreTarea']
+        categoriaDeLaTarea=Categoria.objects.get(pk=int(request.POST['categoriasCrearTarea']))
+        if len(nombreDeLaTarea)>30 and nombreDeLaTarea.count(' ')<1:
+            raise TypeError
+        if nombreDeLaTarea != None and nombreDeLaTarea != "":
+            Tarea(nombre=nombreDeLaTarea,categoria_id=categoriaDeLaTarea.id,estado=0).save()
+    except:
+        pass
     pendientes=[]
     realizadas=[]
     for item in tareasPendientes():
-        if item.categoria_id==int(categoriaDeLaTarea):
+        if categoriaDeLaTarea.nombre=="Todas" or item.categoria_id==categoriaDeLaTarea.id:
             pendientes.append(item)
     for item in tareasRealizadas():
-        if item.categoria_id==int(categoriaDeLaTarea):
+        if categoriaDeLaTarea.nombre=="Todas" or item.categoria_id==categoriaDeLaTarea.id:
             realizadas.append(item)
-    return render(request,'listaTareas.html',{'tareasPendientes':pendientes,'tareasRealizadas':realizadas,'categorias':Categoria.objects.all(),'categoriaActiva':Categoria.objects.get(pk=categoriaDeLaTarea)})
+    return render(request,'listaTareas.html',{'tareasPendientes':pendientes,'tareasRealizadas':realizadas,'categorias':Categoria.objects.all(),'categoriaActiva':categoriaDeLaTarea})
 
 def crearCategoria(request):
     '''
     Esta funcion lo que hace es crear las categorias
     '''
-    
-    nombreDeLaCategoria=request.POST['nombreCategoriaNueva']
-    if nombreDeLaCategoria != None and nombreDeLaCategoria != "":
-        try:
-            Categoria(nombre=nombreDeLaCategoria).save()
-        except:
-            pass
+    try:
+        nombreDeLaCategoria=request.POST['nombreCategoriaNueva']
+        if nombreDeLaCategoria != None and nombreDeLaCategoria != "" and (len(nombreDeLaCategoria)<15 and nombreDeLaCategoria.count(' ')<1):
+            try:
+                Categoria(nombre=nombreDeLaCategoria).save()
+            except:
+                pass
+    except:
+        pass
     pendientes=tareasPendientes()
     realizadas=tareasRealizadas()
     categoria=Categoria.objects.get(nombre="Todas")
     return render(request,'listaTareas.html',{'tareasPendientes':pendientes,'tareasRealizadas':realizadas,'categorias':Categoria.objects.all(),'categoriaActiva':categoria})
 
 def borrarCategoria(request):
-    idDeLaCategoria=request.POST['categoriaABorrar']
-    borrado=Categoria.objects.get(pk=idDeLaCategoria)
     try:
+        idDeLaCategoria=request.POST['categoriaABorrar']
+        borrado=Categoria.objects.get(pk=idDeLaCategoria)
         borrado.delete()
     except:
         pass

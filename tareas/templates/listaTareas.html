@@ -9,7 +9,7 @@ Listado de tareas
     <div id="creacionTareas">
         <form action="{% url 'crearTarea' %}" method="post">
             {% csrf_token %}
-            <label>Categoria</label>
+            <label>Elegir Categoria</label>
             <br>
             <select name="categoriasCrearTarea" id ="catego">
                 {% for c in categorias %}
@@ -61,7 +61,7 @@ Listado de tareas
         {% csrf_token %}
         <input type="hidden" name="nombreCategoria" value="{{categoriaActiva.id}}" id="oculto">
         <div class="pie">
-            <input type="submit" class="botonesCentrales" value="Cambiar estado tareas" name="cambiar" id="cambiarEstado">
+            <input type="submit" class="botonesCentrales" value="Cambiar Estado Tareas" name="cambiar" id="cambiarEstado">
             <input type="submit" class="botonesCentrales" value="Eliminar Tareas Seleccionadas" name="eliminar" id="eliminarTareas">
         </div>
         <div class="inferior">

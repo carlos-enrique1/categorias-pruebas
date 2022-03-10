@@ -62,7 +62,8 @@ label{
     width: 100%;
 }
 .inferior{
-    width: 49%;
+    min-width: 45%;
+    max-width: 45%;
     float: left;
     min-height: 400px;
 }
@@ -97,7 +98,8 @@ label{
 #contenedor{
     margin:0 auto;
     margin-top:20pt;
-    width: 90%;
+    min-width: 90%;
+    max-width: 90%;
     height: 90%;
 }
 #parteSuperior{
