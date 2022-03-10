@@ -13,7 +13,9 @@ Listado de tareas
             <br>
             <select name="categoriasCrearTarea" id ="catego">
                 {% for c in categorias %}
+                {% if not c.nombre == "Todas" %}
                 <option value="{{c.id}}">{{c.nombre}}</option>
+                {% endif %}
                 {% endfor %}
             </select>
             <textArea id="nombreTarea" name="nombreTarea"></textArea>
@@ -41,6 +43,7 @@ Listado de tareas
                 {% endfor %}
             </select>
             <button  type="submit" value="submit">Borrar Categoria</button>
+            
         </form>
     </div>
     <div id="seleccionarCategorias">
@@ -53,6 +56,12 @@ Listado de tareas
                 {% endfor %}
             </select>
             <button onclick="categoriaSeleccionada()">Seleccionar</button>
+            {% if error %}
+            <div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                {{ error }}
+            </div>
+        {% endif %}
         </form>
     </div>
 </div>

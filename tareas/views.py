@@ -1,4 +1,3 @@
-from distutils.log import error
 from django.shortcuts import render
 from .models import Categoria, Tarea
 
@@ -44,8 +43,9 @@ def listaTareas(request):
 
 def listaTareasC(request,id):
     '''
-    Cada vez que se llama a una categoria concreta se llama a esta funcion que seleciona
-    todas las tareas pendientes y realizadas y las envia al html
+    Cada vez que se llama a una categoria concreta se llama a esta funcion, que seleciona
+    todas las tareas pendientes y realizadas, despues comprueba si pertencen a la categoria
+    que se esta pidiendo y si es asi se meten en arrays para pasarlas al html
     '''
     pendientes=[]
     realizadas=[]
@@ -102,12 +102,27 @@ def borrarCategoria(request):
     try:
         idDeLaCategoria=request.POST['categoriaABorrar']
         borrado=Categoria.objects.get(pk=idDeLaCategoria)
+        categoria=Categoria.objects.get(nombre="Todas")
+        pendientes=[]
+        realizadas=[]
+        for item in tareasPendientes():
+            if categoria.nombre=="Todas" or item.categoria_id==categoria.id:
+                pendientes.append(item)
+        for item in tareasRealizadas():
+            if categoria.nombre=="Todas" or item.categoria_id==categoria.id:
+                realizadas.append(item)
         borrado.delete()
     except:
-        pass
-    pendientes=tareasPendientes()
-    realizadas=tareasRealizadas()
-    categoria=Categoria.objects.get(nombre="Todas")
+        categoria=borrado
+        pendientes=[]
+        realizadas=[]
+        for item in tareasPendientes():
+            if categoria.nombre=="Todas" or item.categoria_id==categoria.id:
+                pendientes.append(item)
+        for item in tareasRealizadas():
+            if categoria.nombre=="Todas" or item.categoria_id==categoria.id:
+                realizadas.append(item)
+        return render(request,'listaTareas.html',{'tareasPendientes':pendientes,'tareasRealizadas':realizadas,'categorias':Categoria.objects.all(),'categoriaActiva':categoria,'error':"Esta categoria tiene tareas"})    
     return render(request,'listaTareas.html',{'tareasPendientes':pendientes,'tareasRealizadas':realizadas,'categorias':Categoria.objects.all(),'categoriaActiva':categoria})
 
 def seleccionarCategoria(request):
