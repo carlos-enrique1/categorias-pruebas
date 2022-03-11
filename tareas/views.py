@@ -66,8 +66,8 @@ def crearTarea(request):
         nombreDeLaTarea=request.POST['nombreTarea']
         categoriaDeLaTarea=Categoria.objects.get(nombre=request.POST['categoriasCrearTarea'])
         if len(nombreDeLaTarea)>30 and nombreDeLaTarea.count(' ')<1:
-            raise TypeError
-        if nombreDeLaTarea != None and nombreDeLaTarea != "":
+            problema="Texto no valido"
+        elif nombreDeLaTarea != None and nombreDeLaTarea != "":
             Tarea(nombre=nombreDeLaTarea,categoria_id=categoriaDeLaTarea.id,estado=0).save()
         else:
             problema="No hay texto"
@@ -104,7 +104,12 @@ def borrarCategoria(request):
             categoria=Categoria.objects.get(nombre=request.POST['nombreCategoria'])
         except:
             categoria=Categoria.objects.get(nombre="Todas")
-        borrado=Categoria.objects.get(nombre=request.POST['categoriaABorrar'])
+        try:
+            borrado=Categoria.objects.get(nombre=request.POST['categoriaABorrar'])
+        except:
+            problema="No hay categorias"
+            categoria=Categoria.objects.get(nombre="Todas")
+            return listarTareas(request,categoria,problema)
         id=borrado.id
         borrado.delete()
         if categoria.id==id:
