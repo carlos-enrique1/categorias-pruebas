@@ -26,6 +26,11 @@ def tareasRealizadas():
     return realizadas
 
 def listarTareas(request,categoria,problemas):
+    '''
+    El parametro categoria define que categoria se le pasa al template,
+    problemas es una cadena de texto con los errores que se hayan producido
+    en otros metodos
+    '''
     if categoria.nombre!="Todas":
         pendientes=[]
         realizadas=[]
@@ -41,19 +46,21 @@ def listarTareas(request,categoria,problemas):
     return render(request,'listaTareas.html',{'tareasPendientes':pendientes,'tareasRealizadas':realizadas,'categorias':Categoria.objects.all(),'categoriaActiva':categoria,'error':problemas})
 
 def crearCategoriaTodas():
+    '''
+    Se comprueba que la categoria Todas exista, si no es asi se crea
+    '''
     try:
         Categoria.objects.get(nombre="Todas")
     except BaseException:
         Categoria(nombre="Todas").save()
     return Categoria.objects.get(nombre="Todas")
+
 '''
 Se añade un import a la clase de tu modelo y se añade la siguiente funcion
 '''
 def listaTareas(request):
     '''
-    Creo los dos estados de las tareas para poder diferenciarlas
-    Meto cada tarea en su correspondiente y en el return paso cada lista con un nombre
-    concreto que se usa en el html
+    Primera llamada del programa
     '''
     return listarTareas(request,crearCategoriaTodas(),"")
 
@@ -83,21 +90,23 @@ def crearCategoria(request):
     problemas=""
     try:
         nombreDeLaCategoria=request.POST['nombreCategoriaNueva']
+        categoria=Categoria.objects.get(nombre=request.POST['nombreCategoria'])
         if nombreDeLaCategoria != None and nombreDeLaCategoria != "" and (len(nombreDeLaCategoria)<15 and nombreDeLaCategoria.count(' ')<1):
             try:
                 Categoria(nombre=nombreDeLaCategoria).save()
                 categoria=Categoria.objects.get(nombre=nombreDeLaCategoria)
             except:
-                categoria=Categoria.objects.get(nombre="Todas")
                 problemas="No hay texto"
         else:
-            categoria=Categoria.objects.get(nombre="Todas")
             problemas="No hay texto"
     except:
         categoria=Categoria.objects.get(nombre="Todas")
     return listarTareas(request,categoria,problemas)
 
 def borrarCategoria(request):
+    '''
+    Se borra la categoria si es que existe y no tiene tareas
+    '''
     problema=""
     try:
         try:
@@ -119,6 +128,9 @@ def borrarCategoria(request):
     return listarTareas(request,categoria,problema)
 
 def seleccionarCategoria(request):
+    '''
+    Devuelve la categoria
+    '''
     try:
         categoria=Categoria.objects.get(nombre=(request.POST['seleccionCategorias']))
     except:
@@ -126,6 +138,10 @@ def seleccionarCategoria(request):
     return listarTareas(request,categoria,"")
 
 def cambiarEstados(request):
+    '''
+    Modifica el estado de las tareas mandadas, si es falso a positivo
+    y si es positivo a falso
+    '''
     if request.POST.getlist('tarea'):
         for item in request.POST.getlist('tarea'):
             elemento=Tarea.objects.get(id=int(item))
@@ -141,6 +157,9 @@ def cambiarEstados(request):
     return listarTareas(request,categoria,"")
 
 def borrarTareas(request):
+    '''
+    Borra las tareas que se le pasen
+    '''
     if request.POST.getlist('tarea'):
         for item in request.POST.getlist('tarea'):
             elemento=Tarea.objects.get(id=int(item))
@@ -155,6 +174,9 @@ def borrarTareas(request):
     return listarTareas(request,categoria,"")
 
 def seleccionarModo(request):
+    '''
+    Dependiendo de con que input se haga el post se llama a la funcion correspondiente
+    '''
     if request.POST.get('cambiar',False):
         return cambiarEstados(request)
     elif request.POST.get('crearTareaBoton',False):
@@ -167,4 +189,3 @@ def seleccionarModo(request):
         return seleccionarCategoria(request)
     elif request.POST.get('eliminar',False):
         return borrarTareas(request)
-        

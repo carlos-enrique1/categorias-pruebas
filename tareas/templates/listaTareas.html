@@ -5,9 +5,13 @@ Listado de tareas
 {% endblock %}
 
 {% block 'contenido' %}
+<!--Formulario que se utiliza para mandar la informacion-->
 <form action="{% url 'seleccionarModo' %}" method="post">
 {% csrf_token %}
+<!--Parte superior de la aplicacion-->
 <div id="parteSuperior">
+    <!--Se selecciona una categoria, sin escoger nunca la categoria Todas
+    y un nombre para crear la tarea-->
     <div id="creacionTareas">
             <label>Elegir Categoria</label>
             <br>
@@ -21,11 +25,12 @@ Listado de tareas
             <textArea id="nombreTarea" name="nombreTarea"></textArea>
             <input type="submit" value="Crear Tarea" name="crearTareaBoton" id="botonCrearTarea" class="botonesModos">
     </div>
-    <!--Selector de las categorias, se le da un valor a cada elemento y se llama al valor desde el boton-->
     <div id="gestionCategorias">
+            <!--Se le pasa el texto con el nombre de la categoria-->
             <label>Nueva Categoria</label> <br>
             <input type="text" id="campoCrearTarea" name="nombreCategoriaNueva">
             <input type="submit" name="crearCategoriaBoton" value="Crear Categoria" class="botonesModos"><br>
+            <!--Se selecciona la categoria a borrar-->
             <label>Borrar Categoria</label>
             <select name="categoriaABorrar" id ="categB">
                 {% for c in categorias %}
@@ -36,6 +41,7 @@ Listado de tareas
             </select>
             <input type="submit" value="Borrar Categoria" name="borrarCategoriaBoton" class="botonesModos">
     </div>
+    <!--Se selecciona la categoria a mostrar-->
     <div id="seleccionarCategorias">
         <h2>{{categoriaActiva.nombre}}</h2>
             <select name="seleccionCategorias" id ="categ">
@@ -53,7 +59,9 @@ Listado de tareas
     </div>
 </div>
 <div id="contenedor">
+        <!--Guarda el nombre de la categoria mostrada actualmente-->
         <input type="hidden" name="nombreCategoria" value="{{categoriaActiva.nombre}}" id="oculto">
+        <!--Lista con las tareas pendientes-->
         <div class="inferior">
             <input type="submit" class="botonesCentrales" value="Eliminar Tareas Seleccionadas" name="eliminar" id="eliminarTareas">
             <table>
@@ -74,6 +82,7 @@ Listado de tareas
             </table>
         </div>
         <div class="inferior">
+            <!--Lista con las tareas realizadas-->
             <input type="submit" class="botonesCentrales" value="Cambiar Estado Tareas" name="cambiar" id="cambiarEstado">
             <table>
                 <thead>
