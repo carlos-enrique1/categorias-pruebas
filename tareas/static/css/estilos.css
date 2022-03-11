@@ -1,6 +1,7 @@
 body {
     font-size: 14pt;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: rgba(214, 164, 99, 0.445);
 }
 h2{
     text-align: center;
@@ -9,14 +10,13 @@ h2{
 table {
     margin: 0 auto;
     margin-top: 5pt;
-    width: 90%;
+    width: 75%;
 }
 th,
 td {
     padding: 8pt;
 }
 td{
-    border-bottom:1px solid black;
     width:90%;
 }
 select{
@@ -24,78 +24,71 @@ select{
     width: 60%;
     background-color: rgba(248, 248, 248, 0.822);
 }
-button{
-    margin: 5pt;
-}
 textarea{
     margin: 5pt;
     min-width: 60%;
-    min-height: 30pt;
+    min-height: 31pt;
     max-width: 60%;
-    max-height: 30pt;
-    background-color: rgba(248, 248, 248, 0.822);
-}
-input{
+    max-height: 31pt;
     background-color: rgba(248, 248, 248, 0.822);
 }
 input[type="text"]{
-    margin:5pt;
+    margin:5pt; 
 }
 input[type="checkbox"]{
     float:right;
 }
-input[type="submit"]{
-    width: 30%;
-    height: 30pt;
-    margin-top:5pt;
-    margin-bottom:5pt;
+.botonesModos{
+    background-color: rgba(4, 0, 255, 0.787);
+    color:rgba(255, 255, 255, 0.87);
     font-weight: bold;
-    margin-left: 75pt;
-    margin-right: 75pt;
-    border:1px solid rgba(180, 136, 79, 0.37);
+    border:1px solid rgba(214, 164, 99, 0.445);
+    width: 30%;
+    height: 15pt;
 }
 label{
     margin:5pt;
 }
 .pie{
     width: 100%;
-    height: 36pt;
 }
 .inferior{
-    min-width: 45%;
-    max-width: 45%;
+    margin: 0 auto;
+    margin-left: 17pt;
+    min-width: 47%;
+    max-width: 47%;
     float: left;
-    min-height: 400px;
 }
 .botonesCentrales{
-    margin-left:15pt;
-    margin-top: 10pt;
-    margin-right:15pt;
-    margin-bottom: 5pt;
-    width: 90%;
+    height: 30pt;
+    width: 70%;
+    margin-top:5pt;
+    margin-bottom:5pt;
+    margin-left: 65pt;
+    font-weight: bold;
+    border:1px solid rgba(180, 136, 79, 0.37);
 }
 #botonCrearTarea{
     height: 35pt;
-    width: 80pt;
+    width: 90pt;
     float:right;
+    margin-top:7px;
     margin-right: 20pt;
 }
 #eliminarTareas{
     background-color: rgba(172, 0, 0, 0.6);
     color: white;
-    float: left;
 }
 #cambiarEstado{
     background-color: rgba(0, 172, 51, 0.6);
     color: white;
-    float:right;
 }
 #contenedor{
     margin:0 auto;
     margin-top:20pt;
-    min-width: 90%;
-    max-width: 90%;
-    height: 90%;
+    min-width: 95%;
+    max-width: 95%;
+    min-height: 300pt;
 }
 #parteSuperior{
     margin:0 auto;
@@ -123,18 +116,6 @@ input[type="checkbox"] {
     width:15pt;
     height:15pt;
 }
-button{
-    background-color:rgba(0, 38, 143, 0.63);
-    color:rgba(250, 250, 250, 0.959);
-    font-weight: bold;
-}
-body{
-    background-color: rgba(214, 164, 99, 0.445);
-}
-
-
-
-
 .alert {
     padding: 2px;
     text-align: center;
