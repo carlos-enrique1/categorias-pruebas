@@ -60,9 +60,9 @@ Asegurese que la base de datos está en funcionamiento
 
 Inicie el entorno virtual presionando en la parte inferior izquierda del Visual Studio Code y abra un terminal nuevo para comprobar que aparece (.venv) antes de la dirección en el terminal
 
-Compruebe que esta en la carpeta raiz del proyecto para que la aplicación funcione correctamente cuando la ejecute
+Compruebe que esta en la carpeta raíz del proyecto para que la aplicación funcione correctamente cuando la ejecute
 
-NOTA: En windows puede fallar con el PowerShell
+NOTA: En Windows puede fallar con el PowerShell
 
 Ejecute el proyecto desde **manage.py** con 'F5' o desde el terminal escriba:
 ```
