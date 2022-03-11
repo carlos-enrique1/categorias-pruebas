@@ -18,6 +18,7 @@ td {
 }
 td{
     width:90%;
+    border-bottom:1px solid black;
 }
 select{
     margin: 5pt;
@@ -39,7 +40,7 @@ input[type="checkbox"]{
     float:right;
 }
 .botonesModos{
-    background-color: rgba(4, 0, 255, 0.787);
+    background-color: rgba(30, 27, 219, 0.692);
     color:rgba(255, 255, 255, 0.87);
     font-weight: bold;
     border:1px solid rgba(214, 164, 99, 0.445);
